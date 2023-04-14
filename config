@@ -1,7 +1,7 @@
 set -g default-terminal "screen-256color" # colors!
 setw -g xterm-keys on
-set -s escape-time 10                     # faster command sequences
-set -sg repeat-time 600                   # increase repeat timeout
+set -s escape-time 10                    # faster command sequences
+set -sg repeat-time 100                   # increase repeat timeout
 set -s focus-events on
 
 set -g prefix2 C-k                        # GNU-Screen compatible prefix
@@ -52,12 +52,11 @@ bind -r l select-pane -R  # move right
 bind > swap-pane -D       # swap current pane with the next one
 bind < swap-pane -U       # swap current pane with the previous one
 
-bind + run 'cut -c3- ~/.tmux.conf | sh -s _maximize_pane "#{session_name}" #D'
 
-bind -r H resize-pane -L 2
-bind -r J resize-pane -D 2
-bind -r K resize-pane -U 2
-bind -r L resize-pane -R 2
+bind -r H resize-pane -L 4
+bind -r J resize-pane -D 4
+bind -r K resize-pane -U 4
+bind -r L resize-pane -R 4
 
 unbind n
 unbind p
@@ -65,15 +64,6 @@ bind -r C-h previous-window # select previous window
 bind -r C-l next-window     # select next window
 bind Tab last-window        # move to last active window
 
-bind m run "cut -c3- ~/.tmux.conf | sh -s _toggle_mouse"
-
-
-
-bind U run "cut -c3- ~/.tmux.conf | sh -s _urlview #{pane_id}"
-
-
-
-bind F run "cut -c3- ~/.tmux.conf | sh -s _fpp #{pane_id}"
 
 
 
@@ -127,7 +117,6 @@ if '[ -f ~/.tmux.conf.local ]' 'source ~/.tmux.conf.local'
 
 
 
-run 'cut -c3- ~/.tmux.conf | sh -s _apply_configuration'
 
 
 set-window-option -g automatic-rename off
